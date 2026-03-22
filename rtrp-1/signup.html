@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup | Stock Trend Predictor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body class="theme-shell auth-shell" data-page="signup">
+    <div class="page-glow glow-left"></div>
+    <div class="page-glow glow-right"></div>
+
+    <header class="auth-topline">
+        <a href="index.html" class="brand">
+            <span class="brand-mark"><i class="fa-solid fa-chart-line"></i></span>
+            <span class="brand-copy">
+                <strong>Stock Trend Predictor</strong>
+                <small>AI Signal Lab</small>
+            </span>
+        </a>
+        <div class="auth-top-actions">
+            <span>Already have an account?</span>
+            <a href="login.html">Log in</a>
+        </div>
+    </header>
+
+    <main class="auth-layout">
+        <section class="auth-card card glass-card">
+            <span class="eyebrow">Begin your journey</span>
+            <h1>Create your stock intelligence workspace.</h1>
+            <p>Set up your account to monitor AI-generated market direction and risk in a cleaner way.</p>
+
+            <form class="auth-form" id="signupForm">
+                <label class="input-group">
+                    <span>Full Name</span>
+                    <div class="input-wrap">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" id="signupName" placeholder="Enter your name" required>
+                    </div>
+                </label>
+
+                <label class="input-group">
+                    <span>Email Address</span>
+                    <div class="input-wrap">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" id="signupEmail" placeholder="name@company.com" required>
+                    </div>
+                </label>
+
+                <label class="input-group">
+                    <span>Password</span>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="signupPassword" placeholder="Create a secure password" required>
+                    </div>
+                </label>
+
+                <button type="submit" class="button button-primary button-large button-block">
+                    Create Account
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="auth-footer-note">
+                <span>Already have an account?</span>
+                <a href="login.html">Log in</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js?v=4"></script>
+</body>
+</html>
