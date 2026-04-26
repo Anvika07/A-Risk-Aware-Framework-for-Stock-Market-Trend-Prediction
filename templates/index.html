@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aura Quant Terminal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="grid-shell">
+      <aside class="sidebar glass">
+        <div class="brand">
+          <div class="logo-dot"></div>
+          <div>
+            <h1>Aura Quant</h1>
+            <p>Prediction Core</p>
+          </div>
+        </div>
+
+        <nav class="menu">
+          <button class="menu-item active">Dashboard</button>
+          <button class="menu-item">Markets</button>
+          <button class="menu-item">Portfolio</button>
+          <button class="menu-item">AI Models</button>
+        </nav>
+
+        <div class="cta-card">
+          <p class="mini-label">PRO MODE</p>
+          <p>Signal engine and scenario lab enabled.</p>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar glass">
+          <div>
+            <p class="mini-label">NEURAL TREND OVERLAY</p>
+            <h2 id="headerTicker">NVDA</h2>
+          </div>
+          <form id="analyzeForm" class="controls">
+            <input id="ticker" name="ticker" placeholder="Ticker (AAPL)" value="NVDA" required />
+            <select id="period" name="period">
+              <option value="1y">1y</option>
+              <option value="2y" selected>2y</option>
+              <option value="5y">5y</option>
+            </select>
+            <select id="interval" name="interval">
+              <option value="1d" selected>1d</option>
+              <option value="1wk">1wk</option>
+            </select>
+            <input id="capital" name="capital" type="number" min="1000" step="500" value="10000" />
+            <button id="runButton" type="submit">
+              <span id="runButtonText">Run Model</span>
+              <span id="runSpinner" class="btn-spinner" aria-hidden="true"></span>
+            </button>
+          </form>
+        </header>
+
+        <section class="chart-panel glass">
+          <div class="panel-head">
+            <h3>Neural Prediction Overlay</h3>
+            <p id="asOfText">Fetching latest data...</p>
+          </div>
+          <canvas id="priceChart"></canvas>
+        </section>
+
+        <section class="cards-grid">
+          <article class="metric-card glass">
+            <p class="mini-label">Predicted Trend</p>
+            <h4 id="predictedTrend">-</h4>
+            <p id="confidenceText">Confidence: -</p>
+          </article>
+
+          <article class="metric-card glass">
+            <p class="mini-label">Backtest</p>
+            <h4 id="backtestAcc">-</h4>
+            <p id="macroF1">Macro F1: -</p>
+          </article>
+
+          <article class="metric-card glass">
+            <p class="mini-label">Risk State</p>
+            <h4 id="riskScore">-</h4>
+            <p id="volClass">Volatility: -</p>
+          </article>
+
+          <article class="metric-card glass">
+            <p class="mini-label">Confidence Band</p>
+            <h4 id="bandRange">-</h4>
+            <p id="bandMedian">Median: -</p>
+          </article>
+        </section>
+
+        <section class="bottom-grid">
+          <article class="glass text-card">
+            <h3>Model Rationale</h3>
+            <ul id="explanationList"></ul>
+          </article>
+          <article class="glass text-card">
+            <h3>Prediction Failure Analyzer</h3>
+            <ul id="failureList"></ul>
+          </article>
+        </section>
+
+        <section class="simulation-grid">
+          <article class="glass simulation-card">
+            <div class="panel-head">
+              <h3>Portfolio Simulation</h3>
+              <p>AI Scenario Output</p>
+            </div>
+            <div class="sim-metrics">
+              <div>
+                <p class="mini-label">Strategy Bias</p>
+                <h4 id="simStrategy">-</h4>
+              </div>
+              <div>
+                <p class="mini-label">Position Size</p>
+                <h4 id="simPosition">-</h4>
+              </div>
+              <div>
+                <p class="mini-label">Projected PnL</p>
+                <h4 id="simPnl">-</h4>
+              </div>
+              <div>
+                <p class="mini-label">Range</p>
+                <h4 id="simRange">-</h4>
+              </div>
+            </div>
+            <div class="sim-controls">
+              <p id="simMeta"></p>
+              <div class="sim-badges">
+                <span id="simStop">SL: -</span>
+                <span id="simTake">TP: -</span>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="status-row glass">
+          <p id="statusText">Ready.</p>
+          <p id="modelMeta"></p>
+        </section>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

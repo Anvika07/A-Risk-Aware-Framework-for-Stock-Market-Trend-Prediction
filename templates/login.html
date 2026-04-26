@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aura Quant Access</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body class="login-body">
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+
+    <main class="login-shell">
+      <div class="login-brand">
+        <div class="logo-dot"></div>
+        <span>Aura Quant</span>
+      </div>
+
+      <section class="login-card glass">
+        <p class="mini-label">Access Terminal</p>
+        <h1>Welcome Back</h1>
+        <p class="login-copy">Sign in to open the quant command center.</p>
+
+        <form action="{{ url_for('login') }}" method="post" class="login-form">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="name@company.com" required />
+
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Minimum 8 characters" required />
+
+          <button type="submit">Log In To Terminal</button>
+        </form>
+
+        <p class="login-footnote">Demo mode: credentials are not validated in this local prototype.</p>
+      </section>
+    </main>
+  </body>
+</html>
