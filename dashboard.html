@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Stock Trend Predictor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body class="theme-shell dashboard-shell" data-page="dashboard">
+    <div class="dashboard-frame">
+        <aside class="sidebar card">
+            <a href="index.html" class="brand brand-sidebar">
+                <span class="brand-mark"><i class="fa-solid fa-chart-line"></i></span>
+                <span class="brand-copy">
+                    <strong>Stock Trend Predictor</strong>
+                    <small>Prediction Lab</small>
+                </span>
+            </a>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="active"><i class="fa-solid fa-grip"></i> Dashboard</a>
+                <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="login.html"><i class="fa-solid fa-user"></i> Login</a>
+                <a href="signup.html"><i class="fa-solid fa-user-plus"></i> Signup</a>
+            </nav>
+
+            <div class="sidebar-card">
+                <span class="eyebrow">Signal mode</span>
+                <h3>Quant View</h3>
+                <p>Monitor directional predictions, risk, and Monte Carlo simulation in one screen.</p>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div>
+                    <span class="eyebrow">Live market workspace</span>
+                    <h1>Stock Trend Dashboard</h1>
+                </div>
+                <a href="index.html" class="button button-ghost">Logout</a>
+            </header>
+
+            <section class="dashboard-input card">
+                <div class="input-row">
+                    <label class="dashboard-label">
+                        <span>Stock Ticker</span>
+                        <div class="ticker-input-wrap">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="tickerInput" value="AAPL" placeholder="Enter ticker, e.g. AAPL">
+                        </div>
+                    </label>
+
+                    <button class="button button-primary button-large" id="predictButton" type="button">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        Predict
+                    </button>
+                </div>
+
+                <div class="status-row">
+                    <span class="dashboard-status" id="dashboardStatus">Ready to fetch prediction data.</span>
+                    <div class="loading-indicator hidden" id="loadingIndicator">
+                        <span class="spinner"></span>
+                        <span>Loading prediction...</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="metrics-grid">
+                <article class="metric-card card">
+                    <span>Trend</span>
+                    <strong id="trendValue">UP</strong>
+                    <small id="trendDescription">Short-term directional output</small>
+                </article>
+                <article class="metric-card card">
+                    <span>Confidence</span>
+                    <strong id="confidenceValue">0%</strong>
+                    <small id="confidenceDescription">Model confidence for the predicted class</small>
+                </article>
+                <article class="metric-card card">
+                    <span>Risk Level</span>
+                    <strong id="riskValue">Risky</strong>
+                    <small id="riskDescription">Volatility-based risk assessment</small>
+                </article>
+                <article class="metric-card card">
+                    <span>Signal Strength</span>
+                    <strong id="signalValue">Weak Signal</strong>
+                    <small id="signalDescription">Confidence threshold interpretation</small>
+                </article>
+            </section>
+
+            <section class="dashboard-grid">
+                <article class="chart-card card">
+                    <div class="section-bar">
+                        <div>
+                            <span class="eyebrow">Monte Carlo simulation</span>
+                            <h2>Projected price path view</h2>
+                        </div>
+                        <span class="legend-chip" id="chartTickerLabel">AAPL</span>
+                    </div>
+                    <div class="chart-ratio-box">
+                        <canvas id="simulationChart"></canvas>
+                    </div>
+                </article>
+
+                <aside class="summary-panel">
+                    <article class="card summary-card strong-card">
+                        <span class="eyebrow">Prediction summary</span>
+                        <h3 id="summaryTrend">UP</h3>
+                        <p id="summaryText">Waiting for backend signal. Run a prediction to update this panel.</p>
+                        <div class="probability-stack">
+                            <div class="probability-pill">
+                                <span>UP Probability</span>
+                                <strong id="upProbability">--</strong>
+                            </div>
+                            <div class="probability-pill">
+                                <span>DOWN Probability</span>
+                                <strong id="downProbability">--</strong>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card summary-card">
+                        <div class="summary-line">
+                            <span>Expected Mean Price</span>
+                            <strong id="meanPriceValue">--</strong>
+                        </div>
+                        <div class="summary-line">
+                            <span>Best Case</span>
+                            <strong id="bestCaseValue">--</strong>
+                        </div>
+                        <div class="summary-line">
+                            <span>Worst Case</span>
+                            <strong id="worstCaseValue">--</strong>
+                        </div>
+                    </article>
+
+                    <article class="card summary-card market-card">
+                        <div class="market-header">
+                            <div>
+                                <span class="eyebrow">Market overview</span>
+                                <h3>Top Stock Signals</h3>
+                            </div>
+                            <button class="button button-ghost market-refresh" id="refreshSignalsButton" type="button">
+                                <i class="fa-solid fa-rotate-right"></i>
+                                Refresh
+                            </button>
+                        </div>
+
+                        <div class="market-filter-row">
+                            <button class="filter-chip active" type="button" data-filter="all">All</button>
+                            <button class="filter-chip" type="button" data-filter="up">UP Only</button>
+                            <button class="filter-chip" type="button" data-filter="strong">Strong Only</button>
+                        </div>
+
+                        <p class="market-loading" id="marketSignalsStatus">Loading market signals...</p>
+                        <div class="market-signal-list" id="marketSignalsList"></div>
+                    </article>
+                </aside>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js?v=5"></script>
+</body>
+</html>
